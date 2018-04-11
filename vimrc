@@ -233,3 +233,7 @@ let g:tex_flavor='latex'
 
 let g:Tex_DefaultTargetFormat='pdf'
 let g:Tex_MultipleCompileFormats='pdf,bibtex,pdf'
+
+
+" Make visual mode exit without delay.
+vmap <Esc> <C-c>

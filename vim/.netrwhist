@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =4
 let g:netrw_dirhist_1='/Users/williamstrong/Documents/GitHub/miningsocial/scripts'
 let g:netrw_dirhist_2='/Users/williamstrong/dotfiles'
 let g:netrw_dirhist_3='/Users/williamstrong/dotfiles/oh-my-zsh'
+let g:netrw_dirhist_4='/Users/williamstrong/dotfiles'
