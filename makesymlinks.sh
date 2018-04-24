@@ -4,6 +4,9 @@
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
 ############################
 
+# Update the submodules
+git submodule update --init
+
 ########## Variables
 
 dir=~/dotfiles                    # dotfiles directory
