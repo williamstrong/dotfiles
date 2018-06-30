@@ -7,7 +7,7 @@
 # function for linking dotfiles
 function linkdotfile {
   file="$1"
-  if [ ! -e ~/$file -a ! -L ~/$file ]; then
+  if [ ! -e ~/.$file -a ! -L ~/.$file ]; then
       echo "$file not found, linking..." >&2
       ln -s ~/dotfiles/$file ~/.$file
   else
@@ -17,9 +17,6 @@ function linkdotfile {
 
 
 
-# Install Vundle
-git clone https://github.com/VundleVim/Vundle.vim.git vim/bundle/Vundle.vim
-vim +PluginInstall +qall
 
 install_zsh () {
 # Test to see if zshell is installed.  If it is:
@@ -77,6 +74,9 @@ linkdotfile skhdrc
 # create zsh completion
 linkdotfile zsh-completions
 
+
+# Install Vundle
+vim +PluginInstall +qall
 
 # create a global Git ignore file
 if [ ! -e ~/.global_ignore ]; then
