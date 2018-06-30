@@ -16,8 +16,6 @@ function linkdotfile {
 } 
 
 
-
-
 install_zsh () {
 # Test to see if zshell is installed.  If it is:
 if [ -f /bin/zsh -o -f /usr/bin/zsh ]; then
