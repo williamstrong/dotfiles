@@ -1,4 +1,4 @@
-#
+#! /bin/zsh
 # Executes commands at the start of an interactive session.
 #
 # Authors:
@@ -8,8 +8,8 @@
 export TERM="xterm-256color"
 
 # Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+if [[ -s "${ZDOTDIR:-$HOME}/dotfiles/prezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/dotfiles/prezto/init.zsh"
 fi
 
 # Customize to your needs...
