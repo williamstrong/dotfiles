@@ -1,0 +1,22 @@
+[user]
+	name = William Strong
+	email = william.strong@me.com
+[credential]
+	help = osxkeychain
+[push]
+	default = simple
+[core]
+	editor = vim
+	excludesfile = ~/.global_ignore
+[color]
+	ui = true
+[http]
+	postBuffer = 524288000
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
+[github]
+	user = williamstrong
+[diff "nb2md"]
+	textconv = nb2md
