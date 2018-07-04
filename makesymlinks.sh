@@ -21,7 +21,8 @@ install_zsh () {
 if [ -f /bin/zsh -o -f /usr/bin/zsh ]; then
     # Set the default shell to zsh if it isn't currently set to zsh
     if [[ ! $(echo $SHELL) == $(which zsh) ]]; then
-        chsh -s $(which zsh)
+	    sudo command -v zsh | tee -a /etc/shells
+	    chsh -s $(which zsh)
     fi
 else
     # If zsh isn't installed, get the platform of the current machine
@@ -45,7 +46,7 @@ fi
 }
 
 install_zsh
-
+git submodule update --init --recursive
 zsh install_prezto.zsh
 
 # link over .vim and .vimrc
@@ -68,7 +69,11 @@ linkdotfile skhdrc
 linkdotfile zsh-completions
 
 # hyper.js
-linkdotfile hyper.js
+# linkdotfile hyper.js
+#
+# Hyper makes a config file if one does not exist. The linkdotfile function will not
+# replace it. For now manually make the link.
+ln -sf ~/dotfiles/hyper.js ~/.hyper.js
 
 # Install Vundle
 vim +PluginInstall +qall
