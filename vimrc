@@ -1,265 +1,205 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" File: .vimrc
+" Author: Jake Zimmerman <jake@zimmerman.io>
+"
+" How I configure Vim :P
+"
 
-" set the runtime path to include Vundle and initialize
+" Gotta be first
+set nocompatible
+
+filetype off
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
+" ----- Making Vim look good ------------------------------------------
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
-Plugin 'vim-latex/vim-latex'
-Plugin 'JamshedVesuna/vim-markdown-preview'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'ternjs/tern_for_vim'
-Plugin 'Valloric/YouCompleteMe'
+" ----- Vim as a programmer's text editor -----------------------------
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'vim-syntastic/syntastic'
-Plugin 'tpope/vim-surround'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
+Plugin 'majutsushi/tagbar'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
+Plugin 'vim-scripts/a.vim'
+
+" ----- Working with Git ----------------------------------------------
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+
+" ----- Other text editing features -----------------------------------
+Plugin 'Raimondi/delimitMate'
 Plugin 'garbas/vim-snipmate'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
+" ----- man pages, tmux -----------------------------------------------
+Plugin 'jez/vim-superman'
+Plugin 'christoomey/vim-tmux-navigator'
+
+" ----- Syntax plugins ------------------------------------------------
+Plugin 'jez/vim-c0'
+Plugin 'jez/vim-ispc'
+Plugin 'kchmck/vim-coffee-script'
+" Plugin 'jelera/vim-javascript-syntax'
+Plugin 'mxw/vim-jsx'
 Plugin 'pangloss/vim-javascript'
+Plugin 'mattn/emmet-vim'
+Plugin 'valloric/youcompleteme'
+Plugin 'isRuslan/vim-es6'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-"
-"
-"
-" Create Wrap command to set wrapping related settings.
-command! -nargs=* Wrap set wrap linebreak nolist
-Wrap
+" ----- UltiSnip ------------------------------------------------------
+" Track the engine.
+Plugin 'SirVer/ultisnips'
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Basic settings
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
 
-" Turn on syntax highlighting, or really color coding.
-" This really helps you spot broken syntax as you type.
+" ---- Extras/Advanced plugins ----------------------------------------
+" Highlight and strip trailing whitespace
+Plugin 'ntpeters/vim-better-whitespace'
+" Easily surround chunks of text
+Plugin 'tpope/vim-surround'
+" Align CSV files at commas, align Markdown tables, and more
+Plugin 'godlygeek/tabular'
+" Automaticall insert the closing HTML tag
+Plugin 'HTML-AutoCloseTag'
+" Make tmux look like vim-airline (read README for extra instructions)
+Plugin 'edkolev/tmuxline.vim'
+" All the other syntax plugins I use
+"Plugin 'ekalinin/Dockerfile.vim'
+"Plugin 'digitaltoad/vim-jade'
+"Plugin 'tpope/vim-liquid'
+"Plugin 'cakebaker/scss-syntax.vim'
+
+call vundle#end()
+
+filetype plugin indent on
+
+" --- General settings ---
+set backspace=indent,eol,start
+set ruler
+set number
+set showcmd
+set incsearch
+set hlsearch
+
 syntax on
+set foldmethod=syntax
 
-" Turn off multi-level undo.  Now pressing 'u' will toggle
-" the last change off and on, as opposed to rolling back
-" undoing all previous changes in reverse order.
-" Multi-level undo is NOT helpful for most people!
-set undolevels=0
+set mouse=a
 
-" Maintain existing indentation. 
-set autoindent
+" We need this for plugins like Syntastic and vim-gitgutter which put symbols
+" in the sign column.
+hi clear SignColumn
 
-" Show matches for () [] {} 
-set showmatch
+set termguicolors
 
-" Default tab spacing = 8 columns
-set ts=8
+" ----- Plugin-Specific Settings --------------------------------------
 
-" Default backspace like normal
-set bs=2
+" ----- UltiSnip -----------------------
 
-" Some option activate by default (remove the no to allow these).
-set nobackup
-set nohlsearch
-set noincsearch
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" Some environments set textwidth to force linewrap.  Disable this. 
-set textwidth=0
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
-" Display a status-bar.
+" ----- bling/vim-airline settings -----
+" Always show statusbar
 set laststatus=2
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Here begins my automated wordcount addition.
-" This combines several ideas from:
-" http://stackoverflow.com/questions/114431/fast-word-count-function-in-vim
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:word_count="<unknown>"
-function WordCount()
-	return g:word_count
-endfunction
-function UpdateWordCount()
-	let lnum = 1
-	let n = 0
-	while lnum <= line('$')
-		let n = n + len(split(getline(lnum)))
-		let lnum = lnum + 1
-	endwhile
-	let g:word_count = n
-endfunction
-" Update the count when cursor is idle in command or insert mode.
-" Update when idle for 1000 msec (default is 4000 msec).
-set updatetime=1000
-augroup WordCounter
-	au! CursorHold,CursorHoldI * call UpdateWordCount()
-augroup END
-" Set statusline, shown here a piece at a time
-highlight User1 ctermbg=green guibg=green ctermfg=black guifg=black
-set statusline=%1*			" Switch to User1 color highlight
-set statusline+=%<%F			" file name, cut if needed at start
-set statusline+=%M			" modified flag
-set statusline+=%y			" file type
-set statusline+=%=			" separator from left to right justified
-set statusline+=\ %{WordCount()}\ words,
-set statusline+=\ %l/%L\ lines,\ %P	" percentage through the file
+" Fancy arrow symbols, requires a patched font
+" To install a patched font, run over to
+"     https://github.com/abertsch/Menlo-for-Powerline
+" download all the .ttf files, double-click on them and click "Install"
+" Finally, uncomment the next line
+"let g:airline_powerline_fonts = 1
+
+" Show PASTE if in paste mode
+let g:airline_detect_paste=1
+
+" Show airline for tabs too
+let g:airline#extensions#tabline#enabled = 1
+
+" ----- jistr/vim-nerdtree-tabs -----
+" Open/close NERDTree Tabs with \t
+nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
+" To have NERDTree always open on startup
+let g:nerdtree_tabs_open_on_console_startup = 0
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Below here is just  standard content from Mageia installation environment.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" To display color on a vanilla xterm (Use Rxvt luke).
-if &term=="xterm"
-	set t_Co=8
-	set t_AB=<ESC>[%?%p1%{8}%<%t%p1%{40}%+%e%p1%{92}%+%;%dm
-	set t_AF=<ESC>[%?%p1%{8}%<%t%p1%{30}%+%e%p1%{82}%+%;%dm
-endif
-
-" Some macros to manage the buffer of vim
-map <F5> :bp<C-M>
-map <F6> :bn<C-M>
-map <F7> :bd<C-M>
-
-"" Gzip and Bzip2 files support
-" Take from the Debian package and the exemple on $VIM/vim_exemples
-if has("autocmd")
-
-" Set some sensible defaults for editing C-files
-augroup cprog
-" Remove all cprog autocommands
-  au!
-
-  " When starting to edit a file:
-  "   For *.c and *.h files set formatting of comments and set C-indenting on.
-  "   For other files switch it off.
-  "   Don't change the order, it's important that the line with * comes first.
-  autocmd BufRead *       set formatoptions=tcql nocindent comments&
-  autocmd BufRead *.c,*.h set formatoptions=croql cindent comments=sr:/*,mb:*,el:*/,://
-augroup END
-
-" Also, support editing of gzip-compressed files. DO NOT REMOVE THIS!
-" This is also used when loading the compressed helpfiles.
-augroup gzip
-" Remove all gzip autocommands
-  au!
-
-  " Enable editing of gzipped files
-  "	  read:	set binary mode before reading the file
-  "		uncompress text in buffer after reading
-  "	 write:	compress file after writing
-  "	append:	uncompress file, append, compress file
-  autocmd BufReadPre,FileReadPre	*.gz set bin
-  autocmd BufReadPre,FileReadPre	*.gz let ch_save = &ch|set ch=2
-  autocmd BufReadPost,FileReadPost	*.gz '[,']!gunzip
-  autocmd BufReadPost,FileReadPost	*.gz set nobin
-  autocmd BufReadPost,FileReadPost	*.gz let &ch = ch_save|unlet ch_save
-  autocmd BufReadPost,FileReadPost	*.gz execute ":doautocmd BufReadPost " . %:r
-
-  autocmd BufWritePost,FileWritePost	*.gz !mv <afile> <afile>:r
-  autocmd BufWritePost,FileWritePost	*.gz !gzip <afile>:r
-
-  autocmd FileAppendPre			*.gz !gunzip <afile>
-  autocmd FileAppendPre			*.gz !mv <afile>:r <afile>
-  autocmd FileAppendPost		*.gz !mv <afile> <afile>:r
-  autocmd FileAppendPost		*.gz !gzip <afile>:r
-augroup END
-
-augroup bzip2
-" Remove all bzip2 autocommands
-  au!
-
-  " Enable editing of bzipped files
-  "       read: set binary mode before reading the file
-  "             uncompress text in buffer after reading
-  "      write: compress file after writing
-  "     append: uncompress file, append, compress file
-  autocmd BufReadPre,FileReadPre        *.bz2 set bin
-  autocmd BufReadPre,FileReadPre        *.bz2 let ch_save = &ch|set ch=2
-  autocmd BufReadPost,FileReadPost      *.bz2 set cmdheight=2|'[,']!bunzip2
-  autocmd BufReadPost,FileReadPost      *.bz2 set cmdheight=1 nobin|execute ":doautocmd BufReadPost " . %:r
-  autocmd BufReadPost,FileReadPost      *.bz2 let &ch = ch_save|unlet ch_save
-
-  autocmd BufWritePost,FileWritePost    *.bz2 !mv <afile> <afile>:r
-  autocmd BufWritePost,FileWritePost    *.bz2 !bzip2 <afile>:r
-
-  autocmd FileAppendPre                 *.bz2 !bunzip2 <afile>
-  autocmd FileAppendPre                 *.bz2 !mv <afile>:r <afile>
-  autocmd FileAppendPost                *.bz2 !mv <afile> <afile>:r
-  autocmd FileAppendPost                *.bz2 !bzip2 -9 --repetitive-best <afile>:r
-augroup END
-
-endif " has ("autocmd") 
-
-
-set nu
-
-
-" For Vim-LaTeX
-" REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
-filetype plugin on
-
-" IMPORTANT: win32 users will need to have 'shellslash' set so that latex
-" can be called correctly.
-set shellslash
-
-" OPTIONAL: This enables automatic indentation as you type.
-filetype indent on
-
-" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
-" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
-" The following changes the default filetype back to 'tex':
-let g:tex_flavor='latex'
-
-let g:Tex_DefaultTargetFormat='pdf'
-let g:Tex_MultipleCompileFormats='pdf,bibtex,pdf'
-
-
-" Make visual mode exit without delay.
-vmap <Esc> <C-c>
-
-
-"enable keyboard shortcuts
-let g:tern_map_keys=1
-"show argument hints
-let g:tern_show_argument_hints='on_hold'
-
-
+" ----- scrooloose/syntastic settings -----
+" syntactic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
 let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_error_symbol = '❌'
+let g:syntastic_style_error_symbol = '⁉️'
+let g:syntastic_warning_symbol = '⚠️'
+let g:syntastic_style_warning_symbol = '💩'
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
+
+" ----- xolox/vim-easytags settings -----
+" Where to look for tags files
+set tags=./tags;,~/.vimtags
+" Sensible defaults
+let g:easytags_events = ['BufReadPost', 'BufWritePost']
+let g:easytags_async = 1
+let g:easytags_dynamic_files = 2
+let g:easytags_resolve_links = 1
+let g:easytags_suppress_ctags_warning = 1
+
+" ----- majutsushi/tagbar settings -----
+" Open/close tagbar with \b
+nmap <silent> <leader>b :TagbarToggle<CR>
+" Uncomment to open tagbar automatically whenever possible
+"autocmd BufEnter * nested :call tagbar#autoopen(0)
+
+
+" ----- airblade/vim-gitgutter settings -----
+" In vim-airline, only display "hunks" if the diff is non-zero
+let g:airline#extensions#hunks#non_zero_only = 1
+
+
+" ----- Raimondi/delimitMate settings -----
+let delimitMate_expand_cr = 1
+augroup mydelimitMate
+  au!
+  au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
+  au FileType tex let b:delimitMate_quotes = ""
+  au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
+  au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
+augroup END
+
+" ----- jez/vim-superman settings -----
+" better man page support
+noremap K :SuperMan <cword><CR>
+
+" ----- Indent ----
+" Use spaces to indent
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+
+" ----- Emmet settings -----
+let g:user_emmet_leader_key='<Tab>'
+let g:user_emmet_settings = {
+  \  'javascript.jsx' : {
+    \      'extends' : 'jsx',
+    \  },
+  \}
