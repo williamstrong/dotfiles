@@ -43,6 +43,7 @@ Plugin 'christoomey/vim-tmux-navigator'
 " ----- Syntax plugins ------------------------------------------------
 Plugin 'jez/vim-c0'
 Plugin 'jez/vim-ispc'
+Plugin 'ruanyl/vim-fixmyjs'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'valloric/youcompleteme'
@@ -84,7 +85,6 @@ set mouse=a
 " in the sign column.
 hi clear SignColumn
 
-set termguicolors
 
 " ----- Plugin-Specific Settings --------------------------------------
 
@@ -153,6 +153,11 @@ augroup mydelimitMate
   au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
 augroup END
 
+" ---- ruanyl/vim-fixmyjs -----
+"  run formatting support before writing buffer
+au BufWritePre *.js :Fixmyjs
+au BufWritePre *.jsx :Fixmyjs
+
 " ----- jez/vim-superman settings -----
 " better man page support
 noremap K :SuperMan <cword><CR>
@@ -160,3 +165,11 @@ noremap K :SuperMan <cword><CR>
 " ---- Indent ----
 " Use spaces to indent
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+
+" temporary fix
+" https://github.com/vim/vim/issues/3117
+if has('python3')
+  silent! python3 1
+endif
+
+
