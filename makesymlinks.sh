@@ -68,6 +68,8 @@ linkdotfile skhdrc
 # create zsh completion
 linkdotfile zsh-completions
 
+linkdotfile tern-config
+
 # hyper.js
 # linkdotfile hyper.js
 #

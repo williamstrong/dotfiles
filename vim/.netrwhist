@@ -1,11 +1,4 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/Users/williamstrong/Documents/GitHub/miningsocial/scripts'
-let g:netrw_dirhist_2='/Users/williamstrong/dotfiles'
-let g:netrw_dirhist_3='/Users/williamstrong/dotfiles/oh-my-zsh'
-let g:netrw_dirhist_4='/Users/williamstrong/dotfiles'
-let g:netrw_dirhist_5='/Users/williamstrong/Library/Mobile Documents/com~apple~CloudDocs/Spring 2018/Lit/essay'
-let g:netrw_dirhist_6='/Users/williamstrong/Library/Mobile Documents/com~apple~CloudDocs/Spring 2018/Jesus'
-let g:netrw_dirhist_7='/Users/williamstrong/Library/Mobile Documents/com~apple~CloudDocs/Spring 2018/Jesus/formation_paper'
-let g:netrw_dirhist_8='/Users/williamstrong/.zprezto'
-let g:netrw_dirhist_9='/Users/williamstrong/.config'
+let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_1='/Users/williamstrong/Projects/ForestWeb/frontend/src/components'
+let g:netrw_dirhist_2='/Users/williamstrong/Projects/ForestWeb/frontend/src/components/container'
