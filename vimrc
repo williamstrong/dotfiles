@@ -23,6 +23,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'vim-syntastic/syntastic'
+Plugin 'mtscout6/syntastic-local-eslint.vim'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-easytags'
 Plugin 'majutsushi/tagbar'
@@ -68,7 +69,7 @@ Plugin 'tpope/vim-surround'
 " Align CSV files at commas, align Markdown tables, and more
 Plugin 'godlygeek/tabular'
 " Automaticall insert the closing HTML tag
-Plugin 'HTML-AutoCloseTag'
+Plugin 'alvan/vim-closetag'
 " Make tmux look like vim-airline (read README for extra instructions)
 Plugin 'edkolev/tmuxline.vim'
 " All the other syntax plugins I use
@@ -179,8 +180,9 @@ augroup END
 
 " ---- ruanyl/vim-fixmyjs -----
 "  run formatting support before writing buffer
-au BufWritePre *.js :Fixmyjs
-au BufWritePre *.jsx :Fixmyjs
+" au BufWritePre *.js :Fixmyjs
+" au BufWritePre *.jsx :Fixmyjs
+noremap <Leader><Leader>f :Fixmyjs<CR>
 
 " ----- jez/vim-superman settings -----
 " better man page support
@@ -201,16 +203,21 @@ endif
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_loc_list_height = 5
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
+
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_yaml_checkers = ['jsyaml']
+
 let g:syntastic_error_symbol = '❌'
 let g:syntastic_style_error_symbol = '⁉️'
 let g:syntastic_warning_symbol = '⚠️'
 let g:syntastic_style_warning_symbol = '💩'
+
 highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
@@ -248,16 +255,49 @@ augroup mydelimitMate
   au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
 augroup END
 
+" ----- alvan/vim-closetag settings -----
+" filenames like *.xml, *.html, *.xhtml, ...
+" These are the file extensions where this plugin is enabled.
+"
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+
+" filenames like *.xml, *.xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+
+" filetypes like xml, html, xhtml, ...
+" These are the file types where this plugin is enabled.
+"
+let g:closetag_filetypes = 'html,xhtml,phtml'
+
+" filetypes like xml, xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+
+" integer value [0|1]
+" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+"
+let g:closetag_emptyTags_caseSensitive = 1
+
+" Shortcut for closing tags, default is '>'
+"
+let g:closetag_shortcut = '>'
+
+" Add > at current position without closing the current tag, default is ''
+"
+let g:closetag_close_shortcut = '<leader>>'
+
 " ----- jez/vim-superman settings -----
 " better man page support
 noremap K :SuperMan <cword><CR>
 
 " ----- Indent ----
 " Use spaces to indent
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab
 
 " ----- Emmet settings -----
-let g:user_emmet_leader_key='<Tab>'
 let g:user_emmet_settings = {
   \  'javascript.jsx' : {
     \      'extends' : 'jsx',

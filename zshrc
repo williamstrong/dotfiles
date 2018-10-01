@@ -14,10 +14,12 @@ fi
 
 # Customize to your needs...
 
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER=""
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 DEFAULT_USER=$USER
 
 export LESS='-g -i -M -R -S -w -z-4'
-

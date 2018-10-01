@@ -1,6 +1,7 @@
 [user]
 	name = William Strong
 	email = william.strong@me.com
+	signingkey = 69817AAF8D3638A1
 [credential]
 	help = osxkeychain
 [push]
