@@ -1,10 +1,3 @@
-" File: .vimrc
-" Author: Jake Zimmerman <jake@zimmerman.io>
-"
-" How I configure Vim :P
-"
-
-" Gotta be first
 set nocompatible
 
 filetype off
@@ -46,13 +39,15 @@ Plugin 'christoomey/vim-tmux-navigator'
 " ----- Syntax plugins ------------------------------------------------
 Plugin 'jez/vim-c0'
 Plugin 'jez/vim-ispc'
-Plugin 'kchmck/vim-coffee-script'
+Plugin 'mattn/emmet-vim'
+Plugin 'valloric/youcompleteme'
+
+" JS/TS
+Plugin 'isRuslan/vim-es6'
 Plugin 'mxw/vim-jsx'
 Plugin 'ruanyl/vim-fixmyjs'
 Plugin 'pangloss/vim-javascript'
-Plugin 'mattn/emmet-vim'
-Plugin 'valloric/youcompleteme'
-Plugin 'isRuslan/vim-es6'
+Plugin 'leafgarland/typescript-vim'
 
 " ----- UltiSnip ------------------------------------------------------
 " Track the engine.
@@ -73,10 +68,9 @@ Plugin 'alvan/vim-closetag'
 " Make tmux look like vim-airline (read README for extra instructions)
 Plugin 'edkolev/tmuxline.vim'
 " All the other syntax plugins I use
-"Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'ekalinin/Dockerfile.vim'
 "Plugin 'digitaltoad/vim-jade'
 "Plugin 'tpope/vim-liquid'
-"Plugin 'cakebaker/scss-syntax.vim'
 
 call vundle#end()
 
@@ -100,6 +94,7 @@ set mouse=a
 hi clear SignColumn
 
 set termguicolors
+set background=dark
 
 " ----- Plugin-Specific Settings --------------------------------------
 
@@ -122,7 +117,7 @@ set laststatus=2
 "     https://github.com/abertsch/Menlo-for-Powerline
 " download all the .ttf files, double-click on them and click "Install"
 " Finally, uncomment the next line
-"let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 1
 
 " Show PASTE if in paste mode
 let g:airline_detect_paste=1
@@ -191,12 +186,6 @@ noremap K :SuperMan <cword><CR>
 " ---- Indent ----
 " Use spaces to indent
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-
-" temporary fix
-" https://github.com/vim/vim/issues/3117
-if has('python3')
-  silent! python3 1
-endif
 
 " ----- scrooloose/syntastic settings -----
 " syntactic
