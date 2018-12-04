@@ -21,3 +21,12 @@
 	user = williamstrong
 [diff "nb2md"]
 	textconv = nb2md
+[commit]
+	gpgSign = true
+[gpg]
+	program = gpg
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

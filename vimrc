@@ -16,7 +16,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'vim-syntastic/syntastic'
-Plugin 'mtscout6/syntastic-local-eslint.vim'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-easytags'
 Plugin 'majutsushi/tagbar'
@@ -28,6 +27,7 @@ Plugin 'vim-scripts/a.vim'
 " ----- Working with Git ----------------------------------------------
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
+Plugin 'zivyangll/git-blame.vim'
 
 " ----- Other text editing features -----------------------------------
 Plugin 'Raimondi/delimitMate'
@@ -41,13 +41,11 @@ Plugin 'jez/vim-c0'
 Plugin 'jez/vim-ispc'
 Plugin 'mattn/emmet-vim'
 Plugin 'valloric/youcompleteme'
+Plugin 'prettier/vim-prettier'
 
 " JS/TS
-Plugin 'isRuslan/vim-es6'
-Plugin 'mxw/vim-jsx'
-Plugin 'ruanyl/vim-fixmyjs'
-Plugin 'pangloss/vim-javascript'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'Quramy/vim-js-pretty-template'
 
 " ----- UltiSnip ------------------------------------------------------
 " Track the engine.
@@ -133,13 +131,14 @@ let g:nerdtree_tabs_open_on_console_startup = 0
 
 
 " ----- scrooloose/syntastic settings -----
+let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_error_symbol = '✘'
 let g:syntastic_warning_symbol = "▲"
 augroup mySyntastic
   au!
   au FileType tex let b:syntastic_mode = "passive"
 augroup END
-let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = ['tslint']
 
 " ----- xolox/vim-easytags settings -----
 " Where to look for tags files
@@ -186,6 +185,12 @@ noremap K :SuperMan <cword><CR>
 " ---- Indent ----
 " Use spaces to indent
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+
+" Prettier
+let g:prettier#exec_cmd_async = 1
+let g:prettier#autoformat = 0
+let g:prettier#quickfix_enabled = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
 " ----- scrooloose/syntastic settings -----
 " syntactic
