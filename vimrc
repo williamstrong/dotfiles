@@ -32,6 +32,9 @@ Plugin 'zivyangll/git-blame.vim'
 " ----- Other text editing features -----------------------------------
 Plugin 'Raimondi/delimitMate'
 Plugin 'garbas/vim-snipmate'
+Plugin 'tpope/vim-dispatch'
+Plugin 'junegunn/fzf.vim'
+
 " ----- man pages, tmux -----------------------------------------------
 Plugin 'jez/vim-superman'
 Plugin 'christoomey/vim-tmux-navigator'
@@ -160,6 +163,12 @@ nmap <silent> <leader>b :TagbarToggle<CR>
 " ----- airblade/vim-gitgutter settings -----
 " In vim-airline, only display "hunks" if the diff is non-zero
 let g:airline#extensions#hunks#non_zero_only = 1
+
+" Fugitive will open the quickfix window immediately.
+autocmd QuickFixCmdPost *grep* cwindow
+
+" FZF
+set rtp+=/usr/local/opt/fzf
 
 
 " ----- Raimondi/delimitMate settings -----
