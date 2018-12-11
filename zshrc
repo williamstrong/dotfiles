@@ -22,4 +22,13 @@ POWERLEVEL9K_SHORTEN_DELIMITER=""
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 DEFAULT_USER=$USER
 
+# Kitty Terminal
+
+KITTY_CONFIG_DIRECTORY="${HOME}/.kitty.conf"
+
+autoload -Uz compinit
+compinit
+# Completion for kitty
+kitty + complete setup zsh | source /dev/stdin
+
 export LESS='-g -i -M -R -S -w -z-4'
