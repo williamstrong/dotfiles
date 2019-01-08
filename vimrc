@@ -16,6 +16,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'vim-syntastic/syntastic'
+Plugin 'mtscout6/syntastic-local-eslint.vim'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-easytags'
 Plugin 'majutsushi/tagbar'
@@ -33,6 +34,8 @@ Plugin 'zivyangll/git-blame.vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'garbas/vim-snipmate'
 Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-sensible'
 Plugin 'junegunn/fzf.vim'
 
 " ----- man pages, tmux -----------------------------------------------
@@ -143,7 +146,7 @@ augroup mySyntastic
   au!
   au FileType tex let b:syntastic_mode = "passive"
 augroup END
-let g:syntastic_javascript_checkers = ['tslint']
+let g:syntastic_javascript_checkers = ['eslint']
 
 " ----- xolox/vim-easytags settings -----
 " Where to look for tags files
