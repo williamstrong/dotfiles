@@ -28,7 +28,21 @@ KITTY_CONFIG_DIRECTORY="${HOME}/.kitty.conf"
 
 autoload -Uz compinit
 compinit
+
 # Completion for kitty
 kitty + complete setup zsh | source /dev/stdin
 
 export LESS='-g -i -M -R -S -w -z-4'
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+source /usr/local/share/zsh/site-functions/pyenv.zsh
+
+# GOPATH
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
