@@ -14,48 +14,25 @@ Plugin 'vim-airline/vim-airline-themes'
 " ----- Vim as a programmer's text editor -----------------------------
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'mtscout6/syntastic-local-eslint.vim'
 Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-easytags'
-Plugin 'majutsushi/tagbar'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'vim-scripts/a.vim'
 
 " ----- Working with Git ----------------------------------------------
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
-Plugin 'zivyangll/git-blame.vim'
 
 " ----- Other text editing features -----------------------------------
 Plugin 'Raimondi/delimitMate'
-Plugin 'garbas/vim-snipmate'
 Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-sensible'
 Plugin 'junegunn/fzf.vim'
 
-" ----- man pages, tmux -----------------------------------------------
-Plugin 'jez/vim-superman'
-Plugin 'christoomey/vim-tmux-navigator'
-
 " ----- Syntax plugins ------------------------------------------------
-Plugin 'jez/vim-c0'
-Plugin 'jez/vim-ispc'
-Plugin 'mattn/emmet-vim'
 Plugin 'valloric/youcompleteme'
 Plugin 'prettier/vim-prettier'
-
-" JS/TS
-Plugin 'leafgarland/typescript-vim'
-Plugin 'Quramy/vim-js-pretty-template'
-
-" ----- UltiSnip ------------------------------------------------------
-" Track the engine.
-Plugin 'SirVer/ultisnips'
 
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
@@ -69,12 +46,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'godlygeek/tabular'
 " Automaticall insert the closing HTML tag
 Plugin 'alvan/vim-closetag'
-" Make tmux look like vim-airline (read README for extra instructions)
-Plugin 'edkolev/tmuxline.vim'
-" All the other syntax plugins I use
-Plugin 'ekalinin/Dockerfile.vim'
-"Plugin 'digitaltoad/vim-jade'
-"Plugin 'tpope/vim-liquid'
 
 call vundle#end()
 
@@ -101,16 +72,6 @@ set termguicolors
 set background=dark
 
 " ----- Plugin-Specific Settings --------------------------------------
-
-" ----- UltiSnip -----------------------
-
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
 
 " ----- bling/vim-airline settings -----
 " Always show statusbar
@@ -147,23 +108,6 @@ augroup mySyntastic
 augroup END
 let g:syntastic_javascript_checkers = ['eslint']
 
-" ----- xolox/vim-easytags settings -----
-" Where to look for tags files
-set tags=./tags;,~/.vimtags
-" Sensible defaults
-let g:easytags_events = ['BufReadPost', 'BufWritePost']
-let g:easytags_async = 1
-let g:easytags_dynamic_files = 2
-let g:easytags_resolve_links = 1
-let g:easytags_suppress_ctags_warning = 1
-
-" ----- majutsushi/tagbar settings -----
-" Open/close tagbar with \b
-nmap <silent> <leader>b :TagbarToggle<CR>
-" Uncomment to open tagbar automatically whenever possible
-"autocmd BufEnter * nested :call tagbar#autoopen(0)
-
-
 " ----- airblade/vim-gitgutter settings -----
 " In vim-airline, only display "hunks" if the diff is non-zero
 let g:airline#extensions#hunks#non_zero_only = 1
@@ -173,31 +117,6 @@ autocmd QuickFixCmdPost *grep* cwindow
 
 " FZF
 set rtp+=/usr/local/opt/fzf
-
-
-" ----- Raimondi/delimitMate settings -----
-let delimitMate_expand_cr = 1
-augroup mydelimitMate
-  au!
-  au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
-  au FileType tex let b:delimitMate_quotes = ""
-  au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
-  au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
-augroup END
-
-" ---- ruanyl/vim-fixmyjs -----
-"  run formatting support before writing buffer
-" au BufWritePre *.js :Fixmyjs
-" au BufWritePre *.jsx :Fixmyjs
-noremap <Leader><Leader>f :Fixmyjs<CR>
-
-" ----- jez/vim-superman settings -----
-" better man page support
-noremap K :SuperMan <cword><CR>
-
-" ---- Indent ----
-" Use spaces to indent
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 " Prettier
 let g:prettier#exec_cmd_async = 1
@@ -218,7 +137,6 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_yaml_checkers = ['jsyaml']
 
 let g:syntastic_error_symbol = '❌'
 let g:syntastic_style_error_symbol = '⁉️'
@@ -230,37 +148,9 @@ highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 
-" ----- xolox/vim-easytags settings -----
-" Where to look for tags files
-set tags=./tags;,~/.vimtags
-" Sensible defaults
-let g:easytags_events = ['BufReadPost', 'BufWritePost']
-let g:easytags_async = 1
-let g:easytags_dynamic_files = 2
-let g:easytags_resolve_links = 1
-let g:easytags_suppress_ctags_warning = 1
-
-" ----- majutsushi/tagbar settings -----
-" Open/close tagbar with \b
-nmap <silent> <leader>b :TagbarToggle<CR>
-" Uncomment to open tagbar automatically whenever possible
-"autocmd BufEnter * nested :call tagbar#autoopen(0)
-
-
 " ----- airblade/vim-gitgutter settings -----
 " In vim-airline, only display "hunks" if the diff is non-zero
 let g:airline#extensions#hunks#non_zero_only = 1
-
-
-" ----- Raimondi/delimitMate settings -----
-let delimitMate_expand_cr = 1
-augroup mydelimitMate
-  au!
-  au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
-  au FileType tex let b:delimitMate_quotes = ""
-  au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
-  au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
-augroup END
 
 " ----- alvan/vim-closetag settings -----
 " filenames like *.xml, *.html, *.xhtml, ...
@@ -296,18 +186,6 @@ let g:closetag_shortcut = '>'
 "
 let g:closetag_close_shortcut = '<leader>>'
 
-" ----- jez/vim-superman settings -----
-" better man page support
-noremap K :SuperMan <cword><CR>
-
 " ----- Indent ----
 " Use spaces to indent
 set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab
-
-" ----- Emmet settings -----
-let g:user_emmet_settings = {
-  \  'javascript.jsx' : {
-    \      'extends' : 'jsx',
-    \  },
-  \}
-
