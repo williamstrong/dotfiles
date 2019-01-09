@@ -121,7 +121,6 @@ set laststatus=2
 "     https://github.com/abertsch/Menlo-for-Powerline
 " download all the .ttf files, double-click on them and click "Install"
 " Finally, uncomment the next line
-set macligatures
 set guifont=Fira\ Code:h12
 let g:airline_powerline_fonts = 1
 
