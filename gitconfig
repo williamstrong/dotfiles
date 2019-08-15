@@ -1,13 +1,13 @@
 [user]
 	name = William Strong
-	email = william.strong@me.com
-	signingkey = A6A71B24C9693575B9C74841A9CC9327772A3795
+	email = wstrong@splunk.com
+	signingkey = E9ABF1E8A17D8D51E5644CC27AEA640121529601
 [credential]
 	helper = osxkeychain
 [push]
-	default = simple
+	default = current
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = ~/.global_ignore
 [color]
 	ui = true

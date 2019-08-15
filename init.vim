@@ -1,3 +1,6 @@
+set runtimepath^=~/.vim runtimepath+=~/.vim/after
+    let &packpath = &runtimepath
+
 set nocompatible
 
 filetype off
@@ -47,6 +50,12 @@ let g:user_emmet_setting = {
     \   'extends' : 'jsx',
     \ }
   \}
+
+" ----- Python
+Plugin 'sbdchd/neoformat'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'tmhedberg/SimpylFold'
+
 
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'

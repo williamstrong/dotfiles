@@ -14,9 +14,6 @@ fi
 
 # Customize to your needs...
 
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER=""
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
@@ -32,17 +29,10 @@ compinit
 # Completion for kitty
 kitty + complete setup zsh | source /dev/stdin
 
-export LESS='-g -i -M -R -S -w -z-4'
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
-source /usr/local/share/zsh/site-functions/pyenv.zsh
-
-# GOPATH
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
