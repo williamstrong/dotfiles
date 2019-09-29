@@ -14,7 +14,9 @@ fi
 
 # Customize to your needs...
 
-eval "$(pyenv init -)"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 eval "$(pyenv virtualenv-init -)"
 
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
@@ -34,15 +36,15 @@ kitty + complete setup zsh | source /dev/stdin
 
 export LESS='-g -i -M -R -S -w -z-4'
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
-source /usr/local/share/zsh/site-functions/pyenv.zsh
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 # GOPATH
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+
+# For compilers to find zlib you may need to set:
+export LDFLAGS=" -L/usr/local/opt/zlib/lib"
+export CPPFLAGS=" -I/usr/local/opt/zlib/include"
+
+# For pkg-config to find zlib you may need to set:
+export PKG_CONFIG_PATH=" /usr/local/opt/zlib/lib/pkgconfig"
